@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ffb": {
+      "type": "http",
+      "url": "https://ceaseless-cow-143.eu-west-1.convex.site/mcp"
+    }
+  }
+}

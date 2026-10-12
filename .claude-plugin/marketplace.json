@@ -1,0 +1,12 @@
+{
+  "name": "ffb-marketplace",
+  "description": "Plugins métier pour la FFB Mulhouse.",
+  "owner": { "name": "Teina" },
+  "plugins": [
+    {
+      "name": "ffb",
+      "source": "./",
+      "description": "Brouillons RH, juridiques et communication pour la FFB Mulhouse, avec partage des diagnostics RH via le connecteur FFB."
+    }
+  ]
+}

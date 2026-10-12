@@ -13,7 +13,8 @@ Leexi, GenIA-L et Exa ne sont pas connectés : leurs contenus sont fournis par l
 ## Installation
 
 Dans Claude (application de bureau), ajouter ce dépôt comme source de plugins, puis
-installer `ffb`. Le plugin déclare le connecteur **ffb** (partage des diagnostics RH) :
+installer `ffb`. Le plugin déclare le connecteur **ffb** (partage des diagnostics RH) et son
+identifiant client OAuth `ffb-claude` (client public préenregistré, aucun secret) :
 à la première utilisation, Claude ouvre la page de connexion FFB. Un compte est créé par
 l'administrateur FFB ; il n'y a pas d'inscription libre. Sans connexion, tout reste local.
 

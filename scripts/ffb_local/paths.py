@@ -138,6 +138,20 @@ def managed_root(root, create=False):
             os.close(state)
 
 
+def replace_file(parent, name, data):
+    """Atomically replace a regular file the user opens directly (CSV for Excel)."""
+    temporary = '.tmp-' + uuid.uuid4().hex
+    try:
+        write_new(parent, temporary, data)
+        os.replace(temporary, name, src_dir_fd=parent, dst_dir_fd=parent)
+        os.fsync(parent)
+    finally:
+        try:
+            os.unlink(temporary, dir_fd=parent)
+        except FileNotFoundError:
+            pass
+
+
 def atomic_profile(state, data):
     temporary = '.profile-' + uuid.uuid4().hex
     try:

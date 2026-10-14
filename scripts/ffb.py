@@ -10,10 +10,11 @@ from ffb_local import paths, profile
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['profile-read', 'profile-save', 'save-draft', 'track-request',
-                                            'copy-check'])
+                                            'copy-check', 'request-stats'])
     parser.add_argument('--root')
     parser.add_argument('--request-id')
     parser.add_argument('--source-ref')
+    parser.add_argument('--month')
     args = parser.parse_args()
     if args.command != 'copy-check' and not args.root:
         parser.error('--root est requis pour ' + args.command)
@@ -25,6 +26,9 @@ def main():
             result = profile.read(args.root)
         elif args.command == 'profile-save':
             result = profile.save(args.root, paths.decode_json(sys.stdin.read()))
+        elif args.command == 'request-stats':
+            from ffb_local import stats
+            result = stats.compute(args.root, args.month)
         elif args.command == 'track-request':
             from ffb_local import tracking
             result = tracking.track(args.root, args.request_id, paths.decode_json(sys.stdin.read()))

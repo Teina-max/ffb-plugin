@@ -3,7 +3,6 @@ import csv
 import datetime
 import io
 import os
-import uuid
 
 from . import paths, records
 
@@ -46,10 +45,12 @@ def latest_revision(state, request):
         os.close(request_fd)
 
 
-def read_rows(root_fd):
+def read_rows(root_fd, required=False):
     try:
         data = paths.read_bytes(root_fd, FILE)
     except FileNotFoundError:
+        if required:
+            raise ValueError(FILE + ' introuvable : aucune demande suivie dans ce dossier')
         return []
     rows = list(csv.reader(io.StringIO(data.decode('utf-8-sig')), delimiter=';'))
     if not rows or rows[0] != HEADER:
@@ -75,14 +76,5 @@ def track(root, request, payload):
         rows = [row if existing is previous else existing for existing in rows] if previous else rows + [row]
         buffer = io.StringIO()
         csv.writer(buffer, delimiter=';', lineterminator='\r\n').writerows([HEADER, *rows])
-        temporary = '.suivi-' + uuid.uuid4().hex
-        try:
-            paths.write_new(root_fd, temporary, ('﻿' + buffer.getvalue()).encode('utf-8'))
-            os.replace(temporary, FILE, src_dir_fd=root_fd, dst_dir_fd=root_fd)
-            os.fsync(root_fd)
-        finally:
-            try:
-                os.unlink(temporary, dir_fd=root_fd)
-            except FileNotFoundError:
-                pass
+        paths.replace_file(root_fd, FILE, ('﻿' + buffer.getvalue()).encode('utf-8'))
     return {'status': 'tracked', 'trackingPath': root.rstrip('/') + '/' + FILE, 'requestId': request}

@@ -1,13 +1,14 @@
 # FFB Mulhouse : plugin Claude
 
-Dix parcours en français, qui produisent toujours des **brouillons à relire** :
+Onze parcours en français, qui produisent toujours des **brouillons à relire** :
 `setup` configure les préférences, `work` oriente la demande, `member-reply` prépare la
 réponse à une demande d'adhérent et l'inscrit au suivi, `hr-diagnostic` prépare l'échange RH
 avec un adhérent puis rédige les propositions par thème, `welcome-pack` prépare le document RH
 de nouvelle adhésion, `speech` rédige un discours en trois formats, `press-release` rédige un
 communiqué sans reprise mot à mot des pièces, `infographic` produit une infographie PowerPoint
 modifiable, `social-post` rédige un post avec brief d'image (programmation manuelle dans
-Postiz) et `actu` met en forme l'Actu bimensuelle. Rien n'est jamais envoyé ni publié.
+Postiz), `actu` met en forme l'Actu bimensuelle et `request-stats` calcule les statistiques
+mensuelles des demandes à partir du suivi. Rien n'est jamais envoyé ni publié.
 Leexi, GenIA-L et Exa ne sont pas connectés : leurs contenus sont fournis par l'agent.
 
 ## Installation
@@ -17,6 +18,15 @@ installer `ffb`. Le plugin déclare le connecteur **ffb** (partage des diagnosti
 identifiant client OAuth `ffb-claude` (client public préenregistré, aucun secret) :
 à la première utilisation, Claude ouvre la page de connexion FFB. Un compte est créé par
 l'administrateur FFB ; il n'y a pas d'inscription libre. Sans connexion, tout reste local.
+
+Avec Claude Code (2.1.275 ou plus récent) :
+
+```
+/plugin install ffb --marketplace Teina-max/ffb-plugin
+```
+
+À chaque mise à jour, supprimer tout ancien connecteur `ffb` (ajouté à la main ou laissé par
+une version précédente) : il peut rester connecté et recevoir les appels à la place du bon.
 
 Prérequis : un dossier de travail choisi explicitement dans Claude, et Python 3.10+ pour le
 helper (`scripts/ffb.py`, aucune dépendance). Les fichiers produits restent dans ce dossier.
@@ -114,6 +124,14 @@ Excel) reçoit une ligne par demande : Date, Identifiant, Adhérent, Thème, Ser
 Statut, Brouillon. Une répétition met à jour la ligne et garde la date d'origine. Un
 fichier existant avec un autre en-tête n'est jamais modifié. Une cellule qui commence par
 `=`, `+`, `-` ou `@` est préfixée d'une apostrophe pour qu'Excel ne l'exécute pas.
+
+`request-stats --root <dossier> --month AAAA-MM` (sans stdin) lit `suivi-demandes.csv`, sans
+le modifier, et renvoie `{month, total, byService, byChannel, byTheme, ignored, statsPath}`.
+Les répartitions sont triées par nombre décroissant ; les thèmes sont regroupés sans tenir
+compte des majuscules. Les dates `AAAA-MM-JJ` et `JJ/MM/AAAA` (fichier réenregistré par
+Excel) sont lues ; `ignored` compte les lignes sans date lisible ni colonnes complètes. Le
+tableau `stats-demandes-AAAA-MM.csv` (colonnes Catégorie, Valeur, Demandes ; mêmes règles
+Excel que le suivi) est remplacé à chaque calcul, jamais s'il porte un autre en-tête.
 
 `copy-check` (sans `--root`) reçoit `{"draft": "...", "sources": ["..."]}` sur stdin et
 renvoie `{"status": "ok" | "copied", "copiedPassages": [...]}`. Douze mots consécutifs

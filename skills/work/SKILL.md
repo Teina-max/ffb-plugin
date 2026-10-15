@@ -1,6 +1,6 @@
 ---
 name: work
-description: Point d'entrée FFB pour traiter une demande métier, relire le profil local et orienter vers le bon parcours (réponse adhérent, diagnostic RH, document d'accueil, discours, communiqué, infographie, post, Actu, statistiques des demandes).
+description: Point d'entrée FFB pour traiter une demande métier, relire le profil local et orienter vers le bon parcours (réponse adhérent, diagnostic RH, document d'accueil, discours, communiqué, infographie, post, Actu, statistiques des demandes, fiche de préparation de rendez-vous).
 ---
 
 # Travailler avec FFB
@@ -29,6 +29,7 @@ pas explicitement. Ne le déduis pas d'une transcription ni d'un profil non vér
    Pour la mise en forme de l'Actu, suis [actu](../actu/SKILL.md).
    Pour le document RH remis à un nouvel adhérent, suis [welcome-pack](../welcome-pack/SKILL.md).
    Pour les statistiques mensuelles des demandes d'adhérents, suis [request-stats](../request-stats/SKILL.md).
+   Pour préparer un rendez-vous avec une entreprise (nom ou SIREN), suis [company-brief](../company-brief/SKILL.md).
 7. Pour les autres demandes de communication, direction ou réunions générales, indique simplement
    que le parcours demandé n'est pas encore disponible dans cette version.
    Ne prétends pas avoir traité ou enregistré un dossier de ce pôle.

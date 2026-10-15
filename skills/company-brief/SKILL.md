@@ -31,6 +31,9 @@ Pappers n'est pas connecté, aucune recherche n'est faite à la place de l'agent
      « Points de vigilance » ;
    - les questions à poser suivent l'objet du rendez-vous et le service de l'agent ; pour un
      rendez-vous RH, reprends les thèmes du [diagnostic RH](../hr-diagnostic/references/diagnostic-framework.md) ;
+     une question ne présuppose aucun fait absent des pièces : ce qui est incertain se
+     demande ouvertement (« Qui dirige l'entreprise depuis quand ? », pas « Comment s'est
+     passé le changement de dirigeant ? ») ;
    - n'invente ni effectif, ni chiffre, ni dirigeant, ni convention collective, ni statut
      d'adhérent : ce qui manque reste « non renseigné » ou va dans « À vérifier » ;
    - les dirigeants ne sont cités qu'avec leur nom et leur fonction publiés ; pas d'adresse

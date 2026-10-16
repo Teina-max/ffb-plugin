@@ -1,6 +1,6 @@
 # FFB Mulhouse : plugin Claude
 
-Douze parcours en français, qui produisent toujours des **brouillons à relire** :
+Quatorze parcours en français, qui produisent toujours des **brouillons à relire** :
 `setup` configure les préférences, `work` oriente la demande, `member-reply` prépare la
 réponse à une demande d'adhérent et l'inscrit au suivi, `hr-diagnostic` prépare l'échange RH
 avec un adhérent puis rédige les propositions par thème, `welcome-pack` prépare le document RH
@@ -8,9 +8,11 @@ de nouvelle adhésion, `speech` rédige un discours en trois formats, `press-rel
 communiqué sans reprise mot à mot des pièces, `infographic` produit une infographie PowerPoint
 modifiable, `social-post` rédige un post avec brief d'image (programmation manuelle dans
 Postiz), `actu` met en forme l'Actu bimensuelle, `request-stats` calcule les statistiques
-mensuelles des demandes à partir du suivi et `company-brief` prépare une fiche de rendez-vous
-sur une entreprise. Rien n'est jamais envoyé ni publié.
-Leexi, GenIA-L, Exa et Pappers ne sont pas connectés : leurs contenus sont fournis par l'agent.
+mensuelles des demandes à partir du suivi, `company-brief` prépare une fiche de rendez-vous
+sur une entreprise, `hr-recap` résume un échange RH par mail avec un adhérent et
+`meeting-report` rédige le compte rendu d'une réunion pour les adhérents. Rien n'est jamais envoyé ni publié.
+Leexi, GenIA-L, Exa, Pappers et la messagerie ne sont pas connectés : leurs contenus (synthèses,
+éléments de réponse, pages, mails) sont collés ou fournis par l'agent.
 
 ## Installation
 
@@ -105,9 +107,9 @@ JSON pour `save-draft` :
 {"draft": "# Diagnostic RH\n\nBrouillon à relire.", "department": "hr", "companyRef": null}
 ```
 
-`department` : `hr` (diagnostic RH), `legal` (réponse adhérent, Juridique / Général) ou
+`department` : `hr` (diagnostic RH, fiche récap RH), `legal` (réponse adhérent, Juridique / Général) ou
 `communication` (discours et autres contenus). Une fiche de rendez-vous prend le service de
-l'agent.
+l'agent, comme un compte rendu de réunion.
 `companyRef` peut être omis, `null` ou une référence connue non vide. Les autres
 champs sont refusés. Le statut est toujours `draft` et ne vient jamais du texte.
 `request-id` : 1 à 64 caractères ASCII alphanumériques, `_` ou `-`, commençant par
@@ -145,7 +147,8 @@ Les citations entre guillemets ne sont pas comptées.
 Le connecteur `ffb` est déclaré par le plugin (`.mcp.json`). Quand ses outils sont activés et
 que le profil contient `sharedTenantId`, `hr-diagnostic` enregistre aussi le brouillon dans
 l'espace partagé (`provider: ffb`, `source_scope: hr-diagnostic`, `source_id` : l'identifiant
-de demande) et peut consulter les diagnostics des collègues RH. L'accès est vérifié par le
+de demande) et peut consulter les diagnostics des collègues RH. `hr-recap` partage de même ses
+fiches (`source_scope: hr-recap`). L'accès est vérifié par le
 serveur à chaque appel. Sans connecteur, tout reste local. Les autres parcours restent locaux
 tant que les droits par pôle ne sont pas définis.
 

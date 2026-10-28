@@ -22,8 +22,8 @@ identifiants, secrets, transcriptions ou détails de dossiers salariés.
    de demander les changements souhaités.
 4. Pour un nouveau profil, recueille le nom affiché, le ou les pôles, les tâches
    fréquentes et le niveau de détail. Regroupe ces questions. Valeurs des pôles :
-   RH `hr`, juridique `legal`, communication `communication`, direction `management`,
-   réunions `meetings`. Détail : court `short`, standard `standard`, détaillé `detailed`.
+   RH `hr`, juridique `legal`, communication `communication`, SP `sp`, CA `ca`,
+   vie interne `internal`, standard `reception`, direction `management`, réunions `meetings`. Détail : court `short`, standard `standard`, détaillé `detailed`.
    Une liste vide de tâches est possible. Si l'organisation utilise le connecteur FFB RH
    pour partager les diagnostics, demande l'identifiant d'espace partagé communiqué par
    l'administrateur et enregistre-le dans `sharedTenantId` (identifiant, pas un droit).

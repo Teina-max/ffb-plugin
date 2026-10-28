@@ -14,7 +14,7 @@ def validate(profile):
     if not isinstance(profile.get('displayName'), str) or not profile['displayName'].strip():
         raise ValueError('displayName doit être un texte non vide')
     departments = profile.get('departments')
-    supported = {'hr', 'legal', 'communication', 'management', 'meetings'}
+    supported = {'hr', 'legal', 'communication', 'sp', 'ca', 'internal', 'reception', 'management', 'meetings'}
     if not isinstance(departments, list) or not departments:
         raise ValueError('departments doit contenir au moins un pôle')
     if any(not isinstance(item, str) or item not in supported for item in departments):

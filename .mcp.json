@@ -4,7 +4,8 @@
       "type": "http",
       "url": "https://clean-fish-157.eu-west-1.convex.site/mcp",
       "oauth": {
-        "clientId": "ffb-claude"
+        "clientId": "ffb-claude",
+        "callbackPort": 53117
       }
     }
   }

@@ -94,7 +94,8 @@ JSON initial pour `profile-save` :
 }
 ```
 
-Pôles : `hr`, `legal`, `communication`, `management`, `meetings`, sans doublon.
+Pôles : `hr`, `legal`, `communication`, `sp`, `ca`, `internal` (Vie interne), `reception`
+(Standard), `management`, `meetings`, sans doublon.
 `sharedTenantId` (facultatif) : identifiant UUID de l'espace partagé sur le connecteur FFB RH,
 communiqué par l'administrateur. Ce n'est pas un droit : l'accès est vérifié par le serveur.
 Détail : `short`, `standard`, `detailed`. Les tâches peuvent être une liste vide.
@@ -107,8 +108,9 @@ JSON pour `save-draft` :
 {"draft": "# Diagnostic RH\n\nBrouillon à relire.", "department": "hr", "companyRef": null}
 ```
 
-`department` : `hr` (diagnostic RH, fiche récap RH), `legal` (réponse adhérent, Juridique / Général) ou
-`communication` (discours et autres contenus). Une fiche de rendez-vous prend le service de
+`department` : `hr` (diagnostic RH, fiche récap RH), `legal` (réponse adhérent, Juridique / Général),
+`communication` (discours et autres contenus), `sp`, `ca`, `internal` (Vie interne) ou
+`reception` (Standard). Le suivi affiche le libellé du service (RH, SP, Standard…). Une fiche de rendez-vous prend le service de
 l'agent, comme un compte rendu de réunion.
 `companyRef` peut être omis, `null` ou une référence connue non vide. Les autres
 champs sont refusés. Le statut est toujours `draft` et ne vient jamais du texte.

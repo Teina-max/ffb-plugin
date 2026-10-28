@@ -8,7 +8,8 @@ from . import paths, records
 
 FILE = 'suivi-demandes.csv'
 HEADER = ['Date', 'Identifiant', 'Adhérent', 'Thème', 'Service', 'Canal', 'Statut', 'Brouillon']
-SERVICES = {'hr': 'RH', 'legal': 'Juridique / Général', 'communication': 'Communication'}
+SERVICES = {'hr': 'RH', 'legal': 'Juridique / Général', 'communication': 'Communication',
+            'sp': 'SP', 'ca': 'CA', 'internal': 'Vie interne', 'reception': 'Standard'}
 CHANNELS = {'appel', 'rdv', 'mail'}
 
 

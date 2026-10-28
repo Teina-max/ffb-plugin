@@ -10,8 +10,9 @@ from . import paths
 ID_PATTERN = re.compile(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}\Z')
 REVISION_PATTERN = re.compile(r'r[0-9]{6,}\Z')
 # hr: member HR diagnostic; legal: member request reply (Juridique / Général);
-# communication: content production (speeches and other drafts).
-DEPARTMENTS = {'hr', 'legal', 'communication'}
+# communication: content production (speeches and other drafts);
+# sp, ca, internal (Vie interne), reception (Standard): the other CDC services.
+DEPARTMENTS = {'hr', 'legal', 'communication', 'sp', 'ca', 'internal', 'reception'}
 
 
 def validate(request, source, payload):
